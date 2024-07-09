@@ -6,18 +6,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   persistStore,
   persistReducer,
-  FLUSH,
   REHYDRATE,
-  PAUSE,
   PERSIST,
-  PURGE,
-  REGISTER,
 } from "redux-persist";
+import movieSlice from "./slice/movieSlice";
 
 const rootReducer = combineReducers({
   count: counterSlice,
   cake: cakeSlice,
   iceCream: iceCreamSlice,
+  movies: movieSlice,
 });
 
 const persistConfig = {
@@ -29,12 +27,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-
   // this middleware is of no use it is use to remove warning https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [REHYDRATE, PERSIST],
       },
     }),
 });
