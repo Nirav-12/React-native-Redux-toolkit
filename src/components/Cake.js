@@ -1,25 +1,26 @@
 import { View, Text, Button, StyleSheet } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrease, increace } from "../reducers/slice/counterSlice";
+import { ordered, reStoke } from "../reducers/slice/cakeSlice";
 
-const Counter = () => {
+const Cake = () => {
   const dispacth = useDispatch();
 
-  const { count } = useSelector((state) => state.count);
+  const { noOfCake } = useSelector((state) => state.cake);
+
   return (
     <>
-      <Text style={styles.no_Text}>{count}</Text>
+      <Text style={styles.no_Text}>Available Cake :{noOfCake}</Text>
       <View style={styles.btn_container}>
         <Button
-          title="Increase"
+          title="Order Cake"
           color="black"
-          onPress={() => dispacth(increace())}
+          onPress={() => dispacth(ordered())}
         />
         <Button
-          title="Decrease"
+          title="Restoke Cake"
           color="gray"
-          onPress={() => dispacth(decrease())}
+          onPress={() => dispacth(reStoke(4))}
         />
       </View>
     </>
@@ -40,4 +41,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-export default Counter;
+
+export default Cake;

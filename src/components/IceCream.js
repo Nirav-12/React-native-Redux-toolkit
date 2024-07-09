@@ -1,25 +1,28 @@
 import { View, Text, Button, StyleSheet } from "react-native";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrease, increace } from "../reducers/slice/counterSlice";
+import {
+  orderIceCream,
+  reStokeIceCream,
+} from "../reducers/slice/iceCreamSlice";
 
-const Counter = () => {
+const IceCream = () => {
   const dispacth = useDispatch();
 
-  const { count } = useSelector((state) => state.count);
+  const { noOfIceCream } = useSelector((state) => state.iceCream);
   return (
     <>
-      <Text style={styles.no_Text}>{count}</Text>
+      <Text style={styles.no_Text}>Available IceCream :{noOfIceCream}</Text>
       <View style={styles.btn_container}>
         <Button
-          title="Increase"
+          title="Order IceCreame"
           color="black"
-          onPress={() => dispacth(increace())}
+          onPress={() => dispacth(orderIceCream())}
         />
         <Button
-          title="Decrease"
+          title="Restoke IceCreame"
           color="gray"
-          onPress={() => dispacth(decrease())}
+          onPress={() => dispacth(reStokeIceCream(2))}
         />
       </View>
     </>
@@ -40,4 +43,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-export default Counter;
+
+export default IceCream;
