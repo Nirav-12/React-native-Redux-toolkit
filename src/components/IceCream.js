@@ -13,6 +13,7 @@ const IceCream = () => {
   return (
     <>
       <Text style={styles.no_Text}>Available IceCream :{noOfIceCream}</Text>
+      <Text style={{ color: "red" }}>Buy 1 IceCream get one Cake free</Text>
       <View style={styles.btn_container}>
         <Button
           title="Order IceCreame"
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
   btn_container: {
     flexDirection: "row",
     gap: 15,
-    paddingBottom: 20,
+    padding: 20,
     borderBottomWidth: 1,
     width: "100%",
     justifyContent: "center",
